@@ -89,6 +89,7 @@ int main(){
 
     cout << "You typed in " << endl << a_OLD << endl << b_OLD << endl;
 
+    // Criação da moldura
     string a = "#" + a_OLD;
     string b = "#" + b_OLD;
 

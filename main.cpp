@@ -86,8 +86,13 @@ tuple<string, string> RouteTracer(matrix Route, int i_max,int j_max, string a, s
 
             current_j -= 1;
             currentValue = Route[current_i][current_j];
+
+
         }
     }
+
+    reverse(SeqA.begin(), SeqA.end());
+    reverse(SeqB.begin(), SeqB.end());
 
     return make_tuple(SeqA, SeqB);
 
@@ -212,3 +217,4 @@ int main(){
 // [1] - http://web.tecnico.ulisboa.pt/ana.freitas/bioinformatics.ath.cx/bioinformatics.ath.cx/index2568.html?id=49#:~:text=Alinhamento%20Local%20%2D%20Smith%2DWaterman,em%20todo%20o%20seu%20comprimento
 // [2] - https://github.com/ngopal/SimpleSmithWatermanCPP/blob/master/SmithWaterman.cpp
 // [3] - //https://codereview.stackexchange.com/questions/26100/maximum-of-three-values-in-c
+// [4] - https://www.geeksforgeeks.org/reverse-a-string-in-c-cpp-different-methods/

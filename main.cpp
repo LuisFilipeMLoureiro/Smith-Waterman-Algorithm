@@ -25,7 +25,6 @@ vector<int> findMax_matrix(matrix H, int n, int m){
 	{
 		for(int j=0;j<=m;j++)
 		{
-            cout << "valores: " << H[i][j] << endl;
 			if(H[i][j]>matrix_max)
 			{
 				matrix_max = H[i][j];
@@ -205,6 +204,7 @@ int main(){
 
 	tie(SeqA,SeqB) = RouteTracer(Route,i_max,j_max,a,b);
 
+    cout << "Sequencias que maximizam o score: " << endl;
     cout << "SeqA: " << SeqA << endl;
     cout << "SeqB: " << SeqB << endl;
     cout << "EOF";

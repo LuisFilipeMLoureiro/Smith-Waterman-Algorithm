@@ -15,6 +15,7 @@ int calcula_valor(char a, char b){
     }
 }
 
+
 vector<int> findMax_matrix(matrix H, int n, int m){
 	
     vector<int> result;
@@ -48,6 +49,48 @@ void printador(matrix H, int n, int m){
         }
         cout << endl;
     }
+}
+
+tuple<string, string> RouteTracer(matrix Route, int i_max,int j_max, string a, string b){
+
+    int maxValue = Route[i_max][j_max];
+    int currentValue = maxValue;
+    int current_i = i_max;
+    int current_j = j_max;
+    string SeqA = "";
+    string SeqB = "";
+
+    while(currentValue != 0){
+
+        if(currentValue == 1){
+
+            SeqA += a[current_i];
+            SeqB += b[current_j];
+
+            current_i = current_i - 1;
+            current_j = current_j - 1;
+            currentValue = Route[current_i][current_j];
+
+        } else if(currentValue == 2){
+
+            SeqA += a[current_i];
+            SeqB += "-";
+
+            current_i -= 1;
+            currentValue = Route[current_i][current_j];
+
+        }else if(currentValue == 3){
+
+            SeqA += "-";
+            SeqB += b[current_j];
+
+            current_j -= 1;
+            currentValue = Route[current_i][current_j];
+        }
+    }
+
+    return make_tuple(SeqA, SeqB);
+
 }
 
 tuple<matrix, matrix> Heuristica_SW(matrix H, int n, int m, string a, string b, matrix Route){
@@ -144,6 +187,8 @@ int main(){
     i_max = MAXs[1];
     j_max = MAXs[2];
 
+
+
     cout << "" << endl;
     cout << "Score: " << matrix_max << endl;
     cout << "" << endl;
@@ -151,7 +196,12 @@ int main(){
     cout << "" << endl;
     cout << "j max: " << j_max << endl;
 
-	
+    string SeqA,SeqB;
+
+	tie(SeqA,SeqB) = RouteTracer(Route,i_max,j_max,a,b);
+
+    cout << "SeqA: " << SeqA << endl;
+    cout << "SeqB: " << SeqB << endl;
     cout << "EOF";
     
     return 0;

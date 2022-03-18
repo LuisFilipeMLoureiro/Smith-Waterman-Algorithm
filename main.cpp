@@ -1,6 +1,7 @@
 #include <algorithm>
 #include<vector>
 #include <iostream>
+#include <tuple>
 
 using namespace std;
 
@@ -49,7 +50,7 @@ void printador(matrix H, int n, int m){
     }
 }
 
-matrix Heuristica_SW(matrix H, int n, int m, string a, string b){
+tuple<matrix, matrix> Heuristica_SW(matrix H, int n, int m, string a, string b, matrix Route){
     int del, diag, ins, candidato,w;
     
 
@@ -66,10 +67,27 @@ matrix Heuristica_SW(matrix H, int n, int m, string a, string b){
 
             candidato = max({0,diag,del,ins});
             H[i][j] = candidato;
+
+            if(H[i][j] == 0 ){
+
+                Route[i][j] = 0;
+
+            } else if(H[i][j] == diag){
+
+                Route[i][j] = 1;
+
+            }else if(H[i][j] == del){
+
+                Route[i][j] = 2;
+
+            }else if(H[i][j] == ins){
+
+                Route[i][j] = 3;
+            }
         }
     }
    
-    return H;
+    return make_tuple(H, Route);
 }
 
 
@@ -95,14 +113,27 @@ int main(){
 
      cout << a << endl << b << endl;
 
+  
+    // Matrix Init
     matrix H;
     H.resize(n+1);
     for(int zero = 0; zero <=n; zero++){
         H[zero].resize(m+1);
     }
 
-    H = Heuristica_SW(H,n,m,a,b);
+    matrix Route;
+    Route.resize(n+1);
+    for(int zero = 0; zero <=n; zero++){
+
+        Route[zero].resize(m+1);
+    }
+  
+
+    tie(H, Route) = Heuristica_SW(H,n,m,a,b, Route);
     printador(H,n,m);
+    cout << "" << endl;
+    cout << "Matrix Route" << endl;
+    printador(Route,n,m);
     
     int matrix_max,i_max, j_max;
     

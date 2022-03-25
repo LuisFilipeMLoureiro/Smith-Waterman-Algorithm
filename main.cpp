@@ -158,7 +158,7 @@ int main(){
     string a = "#" + a_OLD;
     string b = "#" + b_OLD;
 
-     cout << a << endl << b << endl;
+    // cout << a << endl << b << endl;
 
   
     // Matrix Init
@@ -177,10 +177,11 @@ int main(){
   
 
     tie(H, Route) = Heuristica_SW(H,n,m,a,b, Route);
+    cout << "Matrix" << endl;
     printador(H,n,m);
     cout << "" << endl;
-    cout << "Matrix Route" << endl;
-    printador(Route,n,m);
+    //cout << "Matrix Route" << endl;
+    //printador(Route,n,m);
     
     int matrix_max,i_max, j_max;
     
